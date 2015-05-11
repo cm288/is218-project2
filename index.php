@@ -1,6 +1,26 @@
 <?php
+
+error_reporting(E_ALL ^ E_NOTICE);
+
+// Turn off error reporting
 error_reporting(0);
-echo '<h4> Top 10 Colleges For Each Question Below:</h4>';
+
+// Report runtime errors
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+// Report all errors
+error_reporting(E_ALL);
+
+// Same as error_reporting(E_ALL);
+ini_set("error_reporting", E_ALL);
+
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+
+
+
+
+'<h4> Top 10 Colleges For Each Question Below:</h4>';
 
 //Query Links #'s 1-6
 echo '<a href="index.php?query=q1">Colleges with the highest percentage of women students</a><br>';
@@ -1339,18 +1359,4 @@ $sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBERE
 echo '<h5> Highest Tuittion</h5>';
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
