@@ -20,7 +20,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 
-'<h4> Top 10 Colleges For Each Question Below:</h4>';
+echo '<h4> Top 10 Colleges For Each Question Below:</h4>';
 
 //Query Links #'s 1-6
 echo '<a href="index.php?query=q1">Colleges with the highest percentage of women students</a><br>';
@@ -31,7 +31,7 @@ echo '<a href="index.php?query=q5">Colleges with the highest revenue from tuitio
 echo '<a href="index.php?query=q6">Colleges with the lowest non-zero tuition revenue</a><br>';
 
 //Query Links #'s 7-16
-echo '<h4>Top 10 Colleges by Region</h4>';
+echo '<h4>Top 10 Colleges by Region:</h4>';
 echo '<a href="index.php?query=q7">US Service Schools</a><br>';
 echo '<a href="index.php?query=q8">New England</a><br>';
 echo '<a href="index.php?query=q9">Mid East</a><br>';
