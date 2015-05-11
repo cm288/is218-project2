@@ -213,7 +213,7 @@ if($_GET['query']=="q6")
 if($_GET['query']=="q7")
 {
 	
-echo '<h4 align="center">US Service Schools</h4>';
+	echo '<h4 align="center">US Service Schools</h4>';
 
 	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 	
@@ -235,7 +235,7 @@ echo '<h4 align="center">US Service Schools</h4>';
                         echo "</tr>";
                 }
 
-echo '<h5>Endowments</h5>';
+	echo '<h5>Endowments</h5>';
 
 	$sql = 'select instnm, F1A01 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1A01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A01 IS NULL and not F1A01 = 0 group by test1.instnm order by F1A01 desc limit 10';
 
@@ -257,7 +257,7 @@ echo '<h5>Endowments</h5>';
                         echo "</tr>";
                 }
 
-echo '<h5> Total Current Assets</h5>';
+	echo '<h5> Total Current Assets</h5>';
 
 
 	$sql = 'select instnm, F1A09 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1A09 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A09 IS NULL and not F1A09 = 0 group by test1.instnm order by F1A09 desc limit 10';
@@ -281,7 +281,7 @@ echo '<h5> Total Current Assets</h5>';
                 }
 	
 
-echo '<h5> Total Current Liabilities</h5>';
+	echo '<h5> Total Current Liabilities</h5>';
 
 
 	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 asc limit 10';
@@ -304,7 +304,7 @@ echo '<h5> Total Current Liabilities</h5>';
                         echo "</tr>";
                 }
 	
-echo '<h5> Lowest Non-Zero Tuition</h5>';
+	echo '<h5> Lowest Non-Zero Tuition</h5>';
 	
 
 
@@ -327,8 +327,8 @@ echo '<h5> Lowest Non-Zero Tuition</h5>';
                         echo "<td>".$row['F1B01']."</td>";
                         echo "</tr>";
                 }
-
-echo '<h5> Highest Tuittion</h5>';
+	
+	echo '<h5> Highest Tuittion</h5>';
 
 }
 
@@ -336,7 +336,7 @@ echo '<h5> Highest Tuittion</h5>';
 if($_GET['query']=="q8")
 {
         
-echo '<h4 align="center">New England</h4>';
+	echo '<h4 align="center">New England</h4>';
 
 	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
@@ -358,7 +358,7 @@ echo '<h4 align="center">New England</h4>';
                         echo "</tr>";
                 }
 
-echo '<h5>Endowments</h5>';
+	echo '<h5>Endowments</h5>';
 
  $sql = 'select instnm, F1A01 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1A01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A01 IS NULL and not F1A01 = 0 group by test1.instnm order by F1A01 desc limit 10';
 
