@@ -53,6 +53,9 @@ $db = new PDO('mysql:host=localhost;dbname=schools;charset=utf8', 'root', 'blank
 //Query 1 print
 if($_GET['query']=="q1")
 {
+
+	echo '<h4 align="center">Colleges with the hightest percentage of women students:</h4>';
+
 	$sql = 'select instnm, EFAGE08 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE08/EFAGE09)*100) as EFAGE08 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE08 IS NULL group by test1.instnm order by EFAGE08 desc limit 10';
 
 	if(!$result = $db->query($sql))
@@ -77,6 +80,9 @@ if($_GET['query']=="q1")
 //Query 2 print
 if($_GET['query']=="q2")
 {
+
+	echo '<h4 align="center">Colleges with the hightest percentage of male students:</h4>';
+
 	$sql = 'select instnm, EFAGE07 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE07/EFAGE09)*100) as EFAGE07 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE07 IS NULL group by test1.instnm order by EFAGE07 desc limit 10';
 
 	if(!$result = $db->query($sql))
@@ -101,6 +107,9 @@ if($_GET['query']=="q2")
 //Query 3 print
 if($_GET['query']=="q3")
 {
+	
+	echo '<h4 align="center">Colleges with the largest endowment overall:</h4>';
+
 	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
 	if(!$result = $db->query($sql))
@@ -126,6 +135,8 @@ if($_GET['query']=="q3")
 //Query 4 print
 if($_GET['query']=="q4")
 {
+	echo '<h4 align="center">Colleges with the largest enrollment of freshman:</h4>';
+
 	$sql = 'select instnm, EFTOTLT from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, EFTOTLT from ef2013a) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFTOTLT IS NULL and not EFTOTLT = 0 group by test1.instnm order by EFTOTLT desc limit 10';
 
 	 if(!$result = $db->query($sql))
@@ -149,6 +160,8 @@ if($_GET['query']=="q4")
 //Query 5 print
 if($_GET['query']=="q5")
 {
+	echo '<h4 align="center">Colleges with the highest revenue from tuition:</h4>';
+
 	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 desc limit 10';
 
 	 if(!$result = $db->query($sql))
@@ -173,6 +186,8 @@ if($_GET['query']=="q5")
 //Query 6 print
 if($_GET['query']=="q6")
 {
+	echo '<h4 align="center">Colleges with the lowest non-zero tuition revenue:</h4>';
+
 	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 asc limit 10';
 	
 	 if(!$result = $db->query($sql))
