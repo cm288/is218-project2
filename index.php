@@ -18,7 +18,7 @@ $db = new PDO('mysql:host=localhost;dbname=schools;charset=utf8', 'root', 'blank
 //Query 1 print
 if($_GET['query']=="q1")
 {
-	$sql = 'select instnm, EFAGE08 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE08/EFAGE09)*100) as EFAGE08 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE08 IS NULL group by test1.instnm order by EFAGE08 desc limit 5';
+	$sql = 'select instnm, EFAGE08 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE08/EFAGE09)*100) as EFAGE08 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE08 IS NULL group by test1.instnm order by EFAGE08 desc limit 10';
 
 	if(!$result = $db->query($sql))
 		die('error'.$db->error);
@@ -42,7 +42,7 @@ if($_GET['query']=="q1")
 //Query 2 print
 if($_GET['query']=="q2")
 {
-	$sql = 'select instnm, EFAGE07 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE07/EFAGE09)*100) as EFAGE07 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE07 IS NULL group by test1.instnm order by EFAGE07 desc limit 5';
+	$sql = 'select instnm, EFAGE07 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE07/EFAGE09)*100) as EFAGE07 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE07 IS NULL group by test1.instnm order by EFAGE07 desc limit 10';
 
 	if(!$result = $db->query($sql))
 		die('error'.$db->error);
@@ -66,7 +66,7 @@ if($_GET['query']=="q2")
 //Query 3 print
 if($_GET['query']=="q3")
 {
-	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 5';
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
 	if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -87,5 +87,32 @@ if($_GET['query']=="q3")
                 	echo "</tr>";
         	}	
 }
+
+//Query 4 print
+if($_GET['query']=="q4")
+{
+	$sql = 'select instnm, EFTOTLT from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, EFTOTLT from ef2013a) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFTOTLT IS NULL and not EFTOTLT = 0 group by test1.instnm order by EFTOTLT desc limit 10';
+
+	 if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+		echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Freshman</th>";
+                echo "</tr>";
+
+	 while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['EFTOTLT']."</td>";
+                        echo "</tr>";
+                }
+}
+
+
+
+
 
 ?>
