@@ -111,6 +111,35 @@ if($_GET['query']=="q4")
                 }
 }
 
+//Query 5 print
+if($_GET['query']=="q5")
+{
+	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 desc limit 10';
+
+	 if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+		echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Revenue</th>";
+                echo "</tr>";
+
+	while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1B01']."</td>";
+                        echo "</tr>";
+                }
+}
+
+
+
+
+
+
+
 
 
 
