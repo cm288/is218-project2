@@ -294,66 +294,131 @@ echo '<h5> Highest Tuittion</h5>';
 
 }
 
-/*
+//Query 8 print (New England)
+if($_GET['query']=="q8")
+{
+        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
-	$a2 = 'select instnm, F1A01 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1A01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A01 IS NULL and not F1A01 = 0 group by test1.instnm order by F1A01 desc limit 10';
-	$a3 = 'select instnm, F1A09 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1A09 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A09 IS NULL and not F1A09 = 0 group by test1.instnm order by F1A09 desc limit 10';
-	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 asc limit 10';
-	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 desc limit 10';
+        if(!$result = $db->query($sql))
+                die('error'.$db->error);
 
-
-
-	$array = array ('Endowment'=>$a1,'Total Current Assets'=>$a2,'Total current liabilities'=>$a3,'Lowest non-zero tuition'=>$a4,'Highest Tuition'=>$a5);
-	
-	foreach($array as $title => $sql)
-	{
-		echo $title;
-		
-		$num=1;
-		echo "<table class='imagetable'  border='1' style='width:100%' table-layout: fixed>";
-	
-		foreach($db->query($sql) as $row)
-		{
-			$remove=0;
-        		
-			foreach($row as $x)
-			{
-        			unset($row[$remove]);
-                		$remove++;
-        		}
-			
-			echo "<tr>";
-        		echo "<td>";
-        		echo ($title);
-        		echo "</td>";
-        		echo "<td>";
-        		echo ("Result Number ".$num);
-        		echo "</td>";
-        		echo "</tr>";
-				
-			foreach ($row as $key => $value)
-        		{
-        			echo "<tr>";
-                		echo "<td>";
-                		echo ($key);
-                		echo "</td>";
-                		echo "<td>";
-                		echo ($value);
-                		echo "</td>";
-                		echo "</tr>";
-        		}
-
-			$num++;
-        		echo("<tr><td><br></td><td><br></td></tr>");		
+                echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Endowment</th>";
+                echo "</tr>";
 
 
-		}
-		
-		echo "</table>";
-		echo '<br><br>';
-	}	
+                while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1H02']."</td>";
+                        echo "</tr>";
+                }
+
+echo '<h5>Endowments</h5>';
+
+ $sql = 'select instnm, F1A01 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1A01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A01 IS NULL and not F1A01 = 0 group by test1.instnm order by F1A01 desc limit 10';
+
+         if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+                echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Total Current Assests</th>";
+                echo "</tr>";
+
+
+                while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1A01']."</td>";
+                        echo "</tr>";
+                }
+
+echo '<h5> Total Current Assets</h5>';
+
+$sql = 'select instnm, F1A09 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1A09 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1A09 IS NULL and not F1A09 = 0 group by test1.instnm order by F1A09 desc limit 10';
+
+        if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+                echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Total Current Liabilities</th>";
+                echo "</tr>";
+
+
+                while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1A09']."</td>";
+                        echo "</tr>";
+                }
+
+
+echo '<h5> Total Current Liabilities</h5>';
+
+$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 asc limit 10';
+
+         if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+                echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Lowest non-zero tuition</th>";
+                echo "</tr>";
+
+
+                while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1B01']."</td>";
+                        echo "</tr>";
+                }
+
+echo '<h5> Lowest Non-Zero Tuition</h5>';
+
+$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 desc limit 10';
+
+        if(!$result = $db->query($sql))
+                die('error'.$db->error);
+
+                echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Highest tuition</th>";
+                echo "</tr>";
+
+
+                while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1B01']."</td>";
+                        echo "</tr>";
+                }
+
+echo '<h5> Highest Tuittion</h5>';
+
 }
 
 
-*/
+
+
+
+
+
+
+
+
+
+
 ?>
