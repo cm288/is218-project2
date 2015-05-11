@@ -1,11 +1,32 @@
 <?php
-//Query Links
+error_reporting(0);
+echo '<h4> Top 10 Colleges For Each Question Below:</h4>';
+
+//Query Links 1-6
 echo '<a href="index.php?query=q1">Colleges with the highest percentage of women students</a><br>';
 echo '<a href="index.php?query=q2">Colleges with the highest percentage of male students</a><br>';
 echo '<a href="index.php?query=q3">Colleges with the largest endowment overall</a><br>';
 echo '<a href="index.php?query=q4">Colleges with the largest enrollment of freshman</a><br>';
 echo '<a href="index.php?query=q5">Colleges with the highest revenue from tuition</a><br>';
 echo '<a href="index.php?query=q6">Colleges with the lowest non-zero tuition revenue</a><br>';
+
+
+echo '<h4>Top 10 Colleges by Region</h4>';
+echo '<a href="index.php?query=">US Service Schools</a><br>';
+echo '<a href="index.php?query=">New England</a><br>';
+echo '<a href="index.php?query=">Mid East</a><br>';
+echo '<a href="index.php?query=">Great Lakes</a><br>';
+echo '<a href="index.php?query=">Plains</a><br>';
+echo '<a href="index.php?query=">Southeast</a><br>';
+echo '<a href="index.php?query=">Southwest</a><br>';
+echo '<a href="index.php?query=">Rocky Mountains</a><br>';
+echo '<a href="index.php?query=">Far West</a><br>';
+echo '<a href="index.php?query=">Outlying Areas</a><br>';
+
+
+
+
+
 
 
 //DB Connection
@@ -135,9 +156,28 @@ if($_GET['query']=="q5")
 }
 
 
+//Query 6 print
+if($_GET['query']=="q6")
+{
+	$sql = 'select instnm, F1B01 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1B01 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1B01 IS NULL and not F1B01 = 0 group by test1.instnm order by F1B01 asc limit 10';
+	
+	 if(!$result = $db->query($sql))
+                die('error'.$db->error);
 
+		echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Revenue</th>";
+                echo "</tr>";
 
-
+		 while($row = $result->fetch())
+                {
+                        echo "<tr>";
+                        echo "<td>".$row['instnm']."</td>";
+                        echo "<td>".$row['F1B01']."</td>";
+                        echo "</tr>";
+                }
+}
 
 
 
