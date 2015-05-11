@@ -197,6 +197,9 @@ if($_GET['query']=="q6")
 //Query 7 print (US Service  Schoools)
 if($_GET['query']=="q7")
 {
+	
+echo '<h4 align="center">US Service Schools</h4>';
+
 	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "0") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 	
 	if(!$result = $db->query($sql))
@@ -317,7 +320,10 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 8 print (New England)
 if($_GET['query']=="q8")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+        
+echo '<h4 align="center">New England</h4>';
+
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "1") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -434,7 +440,10 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 9 print (Mid East)
 if($_GET['query']=="q9")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "2") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+       
+echo '<h4 align="center">Mid East</h4>';
+
+	 $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "2") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -551,7 +560,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 10 print (Great Lakes)
 if($_GET['query']=="q10")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "3") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+        echo '<h4 align="center">Great Lakes</h4>';
+
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "3") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -667,7 +678,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 11 print (Plains)
 if($_GET['query']=="q11")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "4") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+        echo '<h4 align="center">Plains</h4>';
+	
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "4") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -783,7 +796,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 12 print (Southeast)
 if($_GET['query']=="q12")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "5") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+         echo '<h4 align="center">Southeast</h4>';
+
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "5") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -899,7 +914,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 13 print (Southwest)
 if($_GET['query']=="q13")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "6") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+        echo '<h4 align="center">Southwest</h4>';
+	
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "6") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
@@ -1015,6 +1032,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 14 print (Rocky Mountains)
 if($_GET['query']=="q14")
 {
+	echo '<h4 align="center">Rocky Mountains</h4>';
+
+	
         $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "7") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
@@ -1131,6 +1151,8 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 15 print (Far West)
 if($_GET['query']=="q15")
 {
+	echo '<h4 align="center">Far West</h4>';
+	
         $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "8") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
@@ -1247,7 +1269,9 @@ echo '<h5> Highest Tuittion</h5>';
 //Query 16 print (Outlying Areas)
 if($_GET['query']=="q16")
 {
-        $sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "9") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
+        echo '<h4 align="center">Outlying Areas</h4>';
+	
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013 where OBEREG = "9") as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 10';
 
         if(!$result = $db->query($sql))
                 die('error'.$db->error);
