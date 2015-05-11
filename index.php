@@ -15,7 +15,30 @@ ini_set('display_errors', 'On');
 $db = new PDO('mysql:host=localhost;dbname=schools;charset=utf8', 'root', 'blank288', array(PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
+//Query 1 print
+if($_GET['query']=="q1")
+{
+	$sql = 'select instnm, EFAGE08 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, ((EFAGE08/EFAGE09)*100) as EFAGE08 from ef2013b) as test2 on test1.UNITID = test2.UNITID WHERE NOT EFAGE08 IS NULL group by test1.instnm order by EFAGE08 desc limit 5';
 
+	if(!$result = $db->query($sql))
+		die('error'.$db->error);
+
+		echo '<table border="1" style="width:100%">';
+		echo "<tr>";
+		echo "<th>School</th>";
+		echo "<th>Percentage</th>";
+		echo "</tr>";
+
+		while($row = $result->fetch())
+		{
+			echo "<tr>";
+			echo "<td>".$row['instnm']."</td>";
+			echo "<td>".$row['EFAGE08']."</td>";
+			echo "</tr>";
+		}
+}		
+
+		
 //Query 2 print
 if($_GET['query']=="q2")
 {
@@ -38,4 +61,31 @@ if($_GET['query']=="q2")
 		echo "</tr>";
 	}
 }
+
+
+//Query 3 print
+if($_GET['query']=="q3")
+{
+	$sql = 'select instnm, F1H02 from (select UNITID, instnm from hd2013) as test1 left join (select UNITID, F1H02 from f1213_f1a) as test2 on test1.UNITID = test2.UNITID WHERE NOT F1H02 IS NULL and not F1H02 = 0 group by test1.instnm order by F1H02 desc limit 5';
+
+	if(!$result = $db->query($sql))
+                die('error'.$db->error);
+     		
+		echo '<table border="1" style="width:100%">';
+                echo "<tr>";
+                echo "<th>School</th>";
+                echo "<th>Endowment</th>";
+                echo "</tr>";
+
+
+
+	 while($row = $result->fetch())
+        	{
+                	echo "<tr>";
+                	echo "<td>".$row['instnm']."</td>";
+                	echo "<td>".$row['F1H02']."</td>";
+                	echo "</tr>";
+        	}	
+}
+
 ?>
